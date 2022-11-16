@@ -1,0 +1,62 @@
+{
+  "name": "chatty-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "repository": "git@github.com:francislagares/mern-monorepo.git",
+  "author": "Francis Lagares <francis.lagares@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "server": "yarn workspace @mern-monorepo/server start:dev",
+    "client": "yarn workspace @mern-monorepo/client start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\"",
+    "test:watch": "jest --watchAll --no-cache",
+    "test:api": "yarn workspace @mern-monorepo/server test",
+    "test:client": "yarn workspace @mern-monorepo/client test",
+    "test:ci": "jest",
+    "build-server": "yarn workspace @mern-monorepo/server build",
+    "build-client": "yarn workspace @mern-monorepo/client build",
+    "deploy": "concurrently --kill-others-on-fail \"yarn build-client\"  \"yarn server\"",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "lint": "eslint --ext js,jsx,ts,tsx --fix --ignore-path .gitignore .",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx|json|md)\" --write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@mern-monorepo/client": "workspace:^",
+    "@types/jest": "^29.2.3",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.1.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "jest": "^29.3.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  },
+  "engines": {
+    "node": ">=18.10.0",
+    "npm": ">=8.19.0"
+  },
+  "packageManager": "yarn@3.2.1"
+}
