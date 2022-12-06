@@ -11,10 +11,55 @@ datasource db {
 }
 
 model Auth {
-  uId         String   @id @default(auto()) @map("_id") @db.ObjectId
-  username    String
-  email       String
-  password    String
-  avatarColor String
-  createdAt   DateTime @default(now())
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  uId                  String   @unique
+  username             String
+  email                String   @unique
+  password             String?
+  avatarColor          String
+  createdAt            DateTime @default(now())
+  passwordResetToken   String?  @default("")
+  passwordResetExpires Int?
+}
+
+model User {
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  authId               String @unique
+  profilePicture       String @default("")
+  work                 String @default("")
+  school               String @default("")
+  location             String @default("")
+  quote                String @default("")
+  bgImageVersion       String @default("")
+  bgImageId            String @default("")
+  postsCount           Int    @default(0)
+  followersCount       Int    @default(0)
+  followingCount       Int    @default(0)
+  passwordResetToken   Int?
+  passwordResetExpires Int?
+
+  blocked     String[] @unique @db.ObjectId
+  blockedUser User?    @relation("User_Blocked", fields: [blocked], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userBlocked User?    @relation("User_Blocked")
+
+  blockedBy     String[] @unique @db.ObjectId
+  blockedByUser User?    @relation("BlockedByUser", fields: [blockedBy], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userBlockedBy User?    @relation("BlockedByUser")
+
+  notifications Notification
+  social        Social
+}
+
+type Notification {
+  messages  Boolean @default(true)
+  reactions Boolean @default(true)
+  comments  Boolean @default(true)
+  follows   Boolean @default(true)
+}
+
+type Social {
+  facebook  String
+  instagram String
+  twitter   String
+  youtube   String
 }

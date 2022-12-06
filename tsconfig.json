@@ -1,30 +1,43 @@
 {
   "compilerOptions": {
+    /* Project Setup */
     "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx",
     "allowJs": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "removeComments": true,
+    "downlevelIteration": true,
+    
+    /* Strict Type-Checking */
     "strict": true,
-    "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     "strictPropertyInitialization": true,
+    
+    /* Linter Checks */
+    "noImplicitAny": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    
+    
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    
+    /* Advanced Options */
     "forceConsistentCasingInFileNames": true,
+    
+    /* Module Resolution */
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "sourceMap": true,
-    "removeComments": true,
-    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -32,6 +45,8 @@
       ]
     },
   },
+  
+   /* File Inclusion */
   "include": [ "**/*.ts", "**/*.tsx", "lint-staged.config.js"],
   "exclude": ["node_modules", "**/node_modules/*", "**/build/*"]
 }

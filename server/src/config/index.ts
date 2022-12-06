@@ -5,7 +5,7 @@ dotenv.config({});
 
 class Config {
   public DATABASE_URL: string | undefined;
-  public JWT_TOKEN: string | undefined;
+  public JWT_TOKEN: string | '';
   public NODE_ENV: string | undefined;
   public SECRET_KEY_ONE: string | undefined;
   public SECRET_KEY_TWO: string | undefined;
