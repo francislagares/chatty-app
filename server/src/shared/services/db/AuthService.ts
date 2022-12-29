@@ -33,6 +33,20 @@ class AuthService {
 
     return user;
   }
+
+  public async getUserByUsername(
+    username: string,
+  ): Promise<AuthPayload | null> {
+    const user = database.auth.findFirst({
+      where: {
+        username: {
+          contains: `${Helpers.firstLetterUppercase(username)}`,
+        },
+      },
+    });
+
+    return user;
+  }
 }
 
 export const authService = new AuthService();

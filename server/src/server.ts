@@ -12,6 +12,7 @@ import {
   NextFunction,
   json,
   urlencoded,
+  RequestHandler,
 } from 'express';
 import 'express-async-errors';
 import HTTP_STATUS from 'http-status-codes';
@@ -53,9 +54,9 @@ export class ChattyServer {
         ],
         maxAge: 24 * 7 * 3_600_000,
         secure: config.NODE_ENV !== 'development',
-      }),
+      }) as RequestHandler,
     );
-    app.use(hpp());
+    app.use(hpp() as RequestHandler);
     app.use(helmet());
     app.use(
       cors({
@@ -68,7 +69,7 @@ export class ChattyServer {
   }
 
   private standardMiddleware(app: Application): void {
-    app.use(compression());
+    app.use(compression() as RequestHandler);
     app.use(json({ limit: '50mb' }));
     app.use(urlencoded({ extended: true, limit: '50mb' }));
   }

@@ -1,8 +1,11 @@
 import { redisConnection } from '@/shared/services/redis/RedisConnection';
 import logger from '@/utils/logger';
 import { PrismaClient } from '@prisma/client';
+import * as middleware from '@/features/auth/middleware/PrismaMiddleware';
 
 const database = new PrismaClient();
+
+database.$use(middleware.encryptPassword);
 
 export const databaseConnection = () => {
   const connect = async () => {

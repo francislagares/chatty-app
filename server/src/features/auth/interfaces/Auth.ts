@@ -14,6 +14,7 @@ export interface AuthPayload {
   uId?: string;
   email: string;
   username: string;
+  password: string | null;
   avatarColor?: string;
   iat?: number;
 }
@@ -29,7 +30,6 @@ export interface Auth {
   passwordResetToken?: string;
   passwordResetExpires?: number | string;
   comparePassword?: (password: string) => Promise<boolean>;
-  hashPassword?: (password: string) => Promise<string>;
 }
 
 export interface SignUpData {
