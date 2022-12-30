@@ -2,8 +2,6 @@ import {
   CustomError,
   IErrorResponse,
 } from './shared/global/helpers/ErrorHandler';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import logger from '@/utils/logger';
 import {
   Application,

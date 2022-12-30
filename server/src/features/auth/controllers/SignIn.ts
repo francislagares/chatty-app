@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
 import HTTP_STATUS from 'http-status-codes';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
@@ -8,6 +6,7 @@ import { joiValidation } from '@/shared/global/decorators/JoiValidation';
 import { authService } from '@/shared/services/db/AuthService';
 import { BadRequestError } from '@/shared/global/helpers/ErrorHandler';
 import { loginSchema } from '@/features/auth/schemas/signin';
+import { compareHash } from '@/utils/passwords';
 
 export class SignIn {
   @joiValidation(loginSchema)
@@ -20,7 +19,7 @@ export class SignIn {
       throw new BadRequestError('User does not exist');
     }
 
-    const passwordsMatch = compareHash(password, existingUser.password);
+    const passwordsMatch = compareHash(password, existingUser.password!);
 
     if (!passwordsMatch) {
       throw new BadRequestError('Invalid credentials.');
@@ -28,7 +27,7 @@ export class SignIn {
 
     const userJwt = jwt.sign(
       {
-        userId: existingUser.id,
+        userId: existingUser.userId,
         uId: existingUser.uId,
         email: existingUser.email,
         password: existingUser.password,
