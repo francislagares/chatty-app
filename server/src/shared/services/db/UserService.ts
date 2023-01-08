@@ -22,6 +22,20 @@ class UserService {
 
     return user;
   }
+
+  public async getUserByAuthId(authId: string): Promise<User> {
+    const user = await database.user.findFirst({
+      where: {
+        authId,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundError('User not found.');
+    }
+
+    return user;
+  }
 }
 
 export const userService = new UserService();

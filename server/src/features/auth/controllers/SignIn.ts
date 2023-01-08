@@ -1,3 +1,4 @@
+import { userService } from './../../../shared/services/db/UserService';
 import HTTP_STATUS from 'http-status-codes';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
@@ -25,9 +26,11 @@ export class SignIn {
       throw new BadRequestError('Invalid credentials.');
     }
 
+    const user = await userService.getUserByAuthId(existingUser.userId!);
+
     const userJwt = jwt.sign(
       {
-        userId: existingUser.userId,
+        userId: user.id,
         uId: existingUser.uId,
         email: existingUser.email,
         password: existingUser.password,
@@ -36,9 +39,20 @@ export class SignIn {
       config.JWT_TOKEN,
     );
     req.session = { jwt: userJwt };
+
+    const userDocument = {
+      ...user,
+      authId: existingUser.userId,
+      username: existingUser.username,
+      email: existingUser.email,
+      avatarColor: existingUser.avatarColor,
+      uId: existingUser.uId,
+      createdAt: existingUser.createdAt,
+    };
+
     res.status(HTTP_STATUS.OK).json({
       message: 'User logged in successfully',
-      user: existingUser,
+      user: userDocument,
       token: userJwt,
     });
   }

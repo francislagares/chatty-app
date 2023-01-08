@@ -31,7 +31,7 @@
     "experimentalDecorators": true,
     
     /* Advanced Options */
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true, 
     
     /* Module Resolution */
     "esModuleInterop": true,

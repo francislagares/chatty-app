@@ -17,6 +17,7 @@ export interface AuthPayload {
   password: string | null;
   avatarColor?: string;
   iat?: number;
+  createdAt: Date;
 }
 
 export interface Auth {
