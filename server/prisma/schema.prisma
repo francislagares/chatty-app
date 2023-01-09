@@ -9,6 +9,7 @@ datasource db {
 
 model Auth {
   id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  user                 User?
   uId                  String   @unique
   username             String
   email                String   @unique
@@ -21,7 +22,10 @@ model Auth {
 
 model User {
   id                   String @id @default(auto()) @map("_id") @db.ObjectId
-  authId               String @unique
+
+  authId               String @unique @db.ObjectId
+  auth                 Auth   @relation(fields: [authId], references: [id])
+
   profilePicture       String @default("")
   work                 String @default("")
   school               String @default("")
