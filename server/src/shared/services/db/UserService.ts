@@ -14,6 +14,9 @@ class UserService {
       where: {
         id,
       },
+      include: {
+        auth: true,
+      },
     });
 
     if (!user) {

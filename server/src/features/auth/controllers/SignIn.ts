@@ -1,4 +1,4 @@
-import { userService } from './../../../shared/services/db/UserService';
+import { userService } from '@/shared/services/db/UserService';
 import HTTP_STATUS from 'http-status-codes';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';

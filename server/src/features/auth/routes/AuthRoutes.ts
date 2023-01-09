@@ -1,4 +1,4 @@
-import { SignOut } from './../controllers/SignOut';
+import { SignOut } from '@/features/auth/controllers/SignOut';
 import { SignIn } from '@/features/auth/controllers/SignIn';
 import { SignUp } from '@/features/auth/controllers/SignUp';
 import express, { Router } from 'express';
