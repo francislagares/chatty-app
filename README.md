@@ -10,7 +10,7 @@ This repository is built with Yarn workspaces and contains API Node.js Server an
 - React: A JavaScript front-end library for building user interfaces
 
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/francislagares/mern-monorepo/Tests?style=for-the-badge&labelColor=black&logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/francislagares/chatty-app/tests.yaml?style=for-the-badge)
 
 [![Github all releases](https://img.shields.io/github/downloads/francislagares/rest-node-server/total.svg?style=for-the-badge&labelColor=black)](https://github.com/francislagares/rest-node-server/releases/)
 
@@ -39,10 +39,10 @@ This repository is built with Yarn workspaces and contains API Node.js Server an
 
 ```sh
 # clone repository
-git clone git@github.com:francislagares/mern-monorepo.git
+git clone git@github.com:francislagares/chatty-app.git
 
 # cd into
-cd mern-monorepo
+cd chatty-app
 
 # install required dependencies
 yarn
