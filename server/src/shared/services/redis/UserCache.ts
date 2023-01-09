@@ -1,6 +1,7 @@
 import { ServerError } from '@/shared/global/helpers/ErrorHandler';
 import { User } from '@/features/user/interfaces/User';
 import { BaseCache } from './BaseCache';
+import { Helpers } from '@/shared/global/helpers/Helpers';
 
 export class UserCache extends BaseCache {
   constructor() {
@@ -96,6 +97,31 @@ export class UserCache extends BaseCache {
     } catch (err) {
       this.log.error(err);
       throw new ServerError('Server error. Try again.');
+    }
+  }
+
+  public async getUserFromCache(userId: string): Promise<User | null> {
+    try {
+      if (!this.client.isOpen) {
+        await this.client.connect();
+      }
+
+      const response = (await this.client.HGETALL(
+        `users:${userId}`,
+      )) as unknown as User;
+
+      response.createdAt = new Date(Helpers.parseJson(`${response.createdAt}`));
+      response.postsCount = Helpers.parseJson(`${response.postsCount}`);
+      response.blocked = Helpers.parseJson(`${response.blocked}`);
+      response.blockedBy = Helpers.parseJson(`${response.blockedBy}`);
+      response.social = Helpers.parseJson(`${response.notifications}`);
+      response.followersCount = Helpers.parseJson(`${response.followersCount}`);
+      response.followingCount = Helpers.parseJson(`${response.followingCount}`);
+
+      return response;
+    } catch (err) {
+      this.log.error(err);
+      throw new ServerError('Server error. Try again');
     }
   }
 }
