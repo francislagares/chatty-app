@@ -71,7 +71,7 @@ export interface UserJob {
   keyOne?: string;
   keyTwo?: string;
   key?: string;
-  value?: string | NotificationSettings;
+  value?: string | NotificationSettings | User;
 }
 
 export interface EmailJob {
