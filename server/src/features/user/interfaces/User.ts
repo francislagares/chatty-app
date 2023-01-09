@@ -21,14 +21,12 @@ export interface User {
   bgImageVersion: string;
   bgImageId: string;
   profilePicture: string;
-  passwordResetToken: number;
-  passwordResetExpires: number;
 }
 
 export interface ResetPasswordParams {
   username: string;
   email: string;
-  ipaddress: string;
+  ipAddress: string;
   date: string;
 }
 

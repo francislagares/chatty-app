@@ -4736,8 +4736,10 @@ __metadata:
     "@types/compression": ^1.7.2
     "@types/cookie-session": ^2.0.44
     "@types/cors": ^2.8.13
+    "@types/ejs": ^3.1.1
     "@types/express": ^4.17.15
     "@types/hpp": ^0.2.2
+    "@types/ip": ^1.1.0
     "@types/jsonwebtoken": ^9.0.0
     "@types/lodash": ^4.14.191
     "@types/node": ^18.11.18
@@ -4751,6 +4753,7 @@ __metadata:
     compression: ^1.7.4
     cookie-session: ^2.0.0
     cors: ^2.8.5
+    dayjs: ^1.11.7
     dotenv: ^16.0.3
     ejs: ^3.1.8
     express: ^4.18.2
@@ -4758,6 +4761,7 @@ __metadata:
     helmet: ^6.0.1
     hpp: ^0.2.3
     http-status-codes: ^2.2.0
+    ip: ^1.1.8
     jest: ^29.3.1
     joi: ^17.7.0
     jsonwebtoken: ^9.0.0
@@ -5573,6 +5577,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ejs@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@types/ejs@npm:3.1.1"
+  checksum: 12fa444920aaa70af2fae4424fa62b49c23b31a37129c428b7c9f9068e58c0696b4e5601b0449f87bae8794e039c679a43651c356c34f17d1bb460456dd41441
+  languageName: node
+  linkType: hard
+
 "@types/eslint-scope@npm:^3.7.0":
   version: 3.7.3
   resolution: "@types/eslint-scope@npm:3.7.3"
@@ -5712,6 +5723,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 3b3d683498267096c8aca03652702243b1e087bc20e77a9abe74fdbee1c89c8283ee41c47d245cda2f422483b01980d70a1030b92a8ff24b280e0aa868241a8b
+  languageName: node
+  linkType: hard
+
+"@types/ip@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@types/ip@npm:1.1.0"
+  dependencies:
+    "@types/node": "*"
+  checksum: 05e1ef8b525e2f2d73f5cde7ef1e0e7aa1b027946e066b4063f9c8c2fde59a13762ec703e6df32e2db31db1dc3a54f46a7516bd6d970200d175ec7e9700bb83e
   languageName: node
   linkType: hard
 
@@ -9719,6 +9739,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dayjs@npm:^1.11.7":
+  version: 1.11.7
+  resolution: "dayjs@npm:1.11.7"
+  checksum: 5003a7c1dd9ed51385beb658231c3548700b82d3548c0cfbe549d85f2d08e90e972510282b7506941452c58d32136d6362f009c77ca55381a09c704e9f177ebb
+  languageName: node
+  linkType: hard
+
 "debug@npm:2.6.9, debug@npm:^2.6.0, debug@npm:^2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -13329,6 +13356,13 @@ __metadata:
   version: 1.1.5
   resolution: "ip@npm:1.1.5"
   checksum: 30133981f082a060a32644f6a7746e9ba7ac9e2bc07ecc8bbdda3ee8ca9bec1190724c390e45a1ee7695e7edfd2a8f7dda2c104ec5f7ac5068c00648504c7e5a
+  languageName: node
+  linkType: hard
+
+"ip@npm:^1.1.8":
+  version: 1.1.8
+  resolution: "ip@npm:1.1.8"
+  checksum: a2ade53eb339fb0cbe9e69a44caab10d6e3784662285eb5d2677117ee4facc33a64679051c35e0dfdb1a3983a51ce2f5d2cb36446d52e10d01881789b76e28fb
   languageName: node
   linkType: hard
 
