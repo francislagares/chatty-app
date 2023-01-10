@@ -1,4 +1,4 @@
-name: Tests
+name: API:Test
 
 on:
   push:
@@ -33,4 +33,4 @@ jobs:
         run: yarn install
 
       - name: Run Tests
-        run: yarn test:ci
+        run: yarn test:api

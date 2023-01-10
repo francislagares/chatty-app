@@ -14,10 +14,10 @@ export interface AuthPayload {
   uId?: string;
   email: string;
   username: string;
-  password: string | null;
+  password?: string | null;
   avatarColor?: string;
   iat?: number;
-  createdAt: Date;
+  createdAt?: Date;
 }
 
 export interface Auth {
