@@ -8,16 +8,16 @@ datasource db {
 }
 
 model Auth {
-  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  id                   String    @id @default(auto()) @map("_id") @db.ObjectId
   user                 User?
-  uId                  String   @unique
+  uId                  String    @unique
   username             String
-  email                String   @unique
+  email                String    @unique
   password             String?
   avatarColor          String
-  createdAt            DateTime @default(now())
-  passwordResetToken   String?  @default("")
-  passwordResetExpires Int?
+  createdAt            DateTime  @default(now())
+  passwordResetToken   String?   @unique @default("")
+  passwordResetExpires String?   @default("")
 }
 
 model User {

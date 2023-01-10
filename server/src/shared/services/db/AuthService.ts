@@ -10,6 +10,40 @@ class AuthService {
     });
   }
 
+  public async updatePasswordToken(
+    authId: string,
+    token: string,
+    tokenExpiration: string,
+  ): Promise<void> {
+    await database.auth.update({
+      where: {
+        id: authId,
+      },
+      data: {
+        passwordResetToken: token,
+        passwordResetExpires: tokenExpiration,
+      },
+    });
+  }
+
+  public async resetPasswordToken(
+    authId: string,
+    password: string,
+    token: string | null,
+    tokenExpiration: string | null,
+  ): Promise<void> {
+    await database.auth.update({
+      where: {
+        id: authId,
+      },
+      data: {
+        password,
+        passwordResetToken: token,
+        passwordResetExpires: tokenExpiration,
+      },
+    });
+  }
+
   public async getUserByUsernameOrEmail(
     username: string,
     email: string,
@@ -42,6 +76,35 @@ class AuthService {
         username: {
           contains: `${Helpers.firstLetterUppercase(username)}`,
         },
+      },
+    });
+
+    return user;
+  }
+
+  public async getUserByEmail(email: string): Promise<Auth | null> {
+    const user = database.auth.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    return user;
+  }
+
+  public async getUserByToken(token: string): Promise<Auth | null> {
+    const user = database.auth.findFirst({
+      where: {
+        AND: [
+          {
+            passwordResetToken: token,
+          },
+          {
+            passwordResetExpires: {
+              gt: Date.now().toString(),
+            },
+          },
+        ],
       },
     });
 
