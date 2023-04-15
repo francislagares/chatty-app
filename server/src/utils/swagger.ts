@@ -11,7 +11,7 @@ const swaggerDefinition: OAS3Definition = {
   },
   servers: [
     {
-      url: 'http://localhost:8000',
+      url: 'http://localhost:5000',
     },
   ],
 };

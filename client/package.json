@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^7.0.0",
+    "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^3.1.1"
+    "web-vitals": "^3.3.1"
   },
   "scripts": {
     "start": "craco start",
@@ -22,12 +22,12 @@
   },
   "devDependencies": {
     "identity-obj-proxy": "^3.0.0",
-    "jest-environment-jsdom": "^29.3.1",
+    "jest-environment-jsdom": "^29.5.0",
     "prettier-stylelint": "^0.4.2",
-    "stylelint": "^14.16.1",
+    "stylelint": "^15.4.0",
     "stylelint-a11y": "^1.2.3",
-    "stylelint-config-standard": "^29.0.0",
-    "stylelint-order": "^6.0.1"
+    "stylelint-config-standard": "^32.0.0",
+    "stylelint-order": "^6.0.3"
   },
   "eslintConfig": {
     "extends": [
