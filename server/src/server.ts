@@ -1,30 +1,33 @@
+import 'express-async-errors';
+
+import {
+  Application,
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+  json,
+  urlencoded,
+} from 'express';
 import {
   CustomError,
   IErrorResponse,
 } from './shared/global/helpers/ErrorHandler';
+
+import { config } from '@/config';
+import applicationRoutes from '@/routes';
 import logger from '@/utils/logger';
-import {
-  Application,
-  Request,
-  Response,
-  NextFunction,
-  json,
-  urlencoded,
-  RequestHandler,
-} from 'express';
-import 'express-async-errors';
-import HTTP_STATUS from 'http-status-codes';
-import { Server as HTTPServer } from 'http';
+import { createAdapter } from '@socket.io/redis-adapter';
+import compression from 'compression';
+import cookieSession from 'cookie-session';
 import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
-import compression from 'compression';
-import cookieSession from 'cookie-session';
-import { Server as SocketServer } from 'socket.io';
+import { Server as HTTPServer } from 'http';
+import HTTP_STATUS from 'http-status-codes';
 import { createClient } from 'redis';
-import { createAdapter } from '@socket.io/redis-adapter';
-import { config } from '@/config';
-import applicationRoutes from '@/routes';
+import { Server as SocketServer } from 'socket.io';
+import { SocketIOPostHandler } from './shared/sockets/post';
 
 const SERVER_PORT = 5000;
 export class ChattyServer {
@@ -135,7 +138,9 @@ export class ChattyServer {
     });
   }
 
-  private socketIOConnection(_io: SocketServer): void {
-    logger.info('Socket connected');
+  private socketIOConnection(io: SocketServer): void {
+    const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
+
+    postSocketHandler.listen();
   }
 }
