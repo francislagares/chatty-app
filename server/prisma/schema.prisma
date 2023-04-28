@@ -8,23 +8,23 @@ datasource db {
 }
 
 model Auth {
-  id                   String    @id @default(auto()) @map("_id") @db.ObjectId
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
   user                 User?
-  uId                  String    @unique
+  uId                  String   @unique
   username             String
-  email                String    @unique
+  email                String   @unique
   password             String?
   avatarColor          String
-  createdAt            DateTime  @default(now())
-  passwordResetToken   String?   @unique @default("")
-  passwordResetExpires String?   @default("")
+  createdAt            DateTime @default(now())
+  passwordResetToken   String?  @unique @default("")
+  passwordResetExpires String?  @default("")
 }
 
 model User {
-  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  authId               String @unique @db.ObjectId
-  auth                 Auth   @relation(fields: [authId], references: [id])
+  authId String @unique @db.ObjectId
+  auth   Auth   @relation(fields: [authId], references: [id])
 
   profilePicture       String @default("")
   work                 String @default("")
@@ -49,6 +49,7 @@ model User {
 
   notifications Notification
   social        Social
+  Post          Post[]
 }
 
 type Notification {
@@ -63,4 +64,34 @@ type Social {
   instagram String
   twitter   String
   youtube   String
+}
+
+model Post {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  author User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+
+  email          String
+  avatarColor    String
+  profilePicture String
+  post           String    @default("")
+  bgColor        String    @default("")
+  imgVersion     String    @default("")
+  imgId          String    @default("")
+  feelings       String    @default("")
+  gifUrl         String    @default("")
+  privacy        String    @default("")
+  commentsCount  Int       @default(0)
+  reactions      Reactions
+  createdAt      DateTime  @default(now())
+}
+
+type Reactions {
+  like  Int @default(0)
+  love  Int @default(0)
+  haha  Int @default(0)
+  wow   Int @default(0)
+  sad   Int @default(0)
+  angry Int @default(0)
 }
